@@ -1,27 +1,41 @@
-<?php
-$rawJSON = file_get_contents('php://input');
-$EchoReqObj = json_decode($rawJSON);
-if($EchoReqObj->queryResult->queryText =="test it"){
-  $array = array (
-  'fulfillmentText' => ' ',
-  'fulfillmentMessages' => 
-  array (
-    0 => 
-    array (
-      'text' => 
-      array (
-        'text' => 
-        array (
-          0 => 'Right now its 47.07 degress with clear sky',
-        ),
-      ),
-    ),
-  ),
-  'source' => '',
-)
-  echo json_encode($array);
- }
+<?php 
 
+$method = $_SERVER['REQUEST_METHOD'];
 
+// Process only when method is POST
+if($method == 'POST'){
+	$requestBody = file_get_contents('php://input');
+	$json = json_decode($requestBody);
+
+	$text = $json->queryResult->intent->displayName;
+
+	switch ($text) {
+		case 'welcome':
+			$speech = "Hi, Nice to meet you";
+			break;
+
+		case 'bye':
+			$speech = "Bye, good night";
+			break;
+
+		case 'anything':
+			$speech = "Yes, you can type anything here.";
+			break;
+		
+		default:
+			$speech = "Sorry, I didnt get that. Please ask me something else.";
+			break;
+	}
+
+	$response = new \stdClass();
+	$response->speech = $speech;
+	$response->displayText = $speech;
+	$response->source = "webhook";
+	echo json_encode($response);
+}
+else
+{
+	echo "Method not allowed";
+}
 
 ?>
