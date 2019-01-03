@@ -12,7 +12,7 @@ if($method == 'POST'){
 	switch ($text) {
 		case 'welcome':
 			if($id=$json->result->parameters->id){
-				$speech="testing the data";
+				$speech=$id;
 			}
 			break;
 
