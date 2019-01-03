@@ -11,8 +11,10 @@ if($method == 'POST'){
 
 	switch ($text) {
 		case 'welcome':
-			$speech = "Hi, Nice to meet you";
-			$inputText=$inputText.$speech;
+		    $ch = curl_init('http://ec2-34-228-218-131.compute-1.amazonaws.com/AlexaIvanti/Api/Incident/GetSummaryOfTodaysIncident');
+		    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		    $speech=curl_exec($ch);
+		    curl_close($ch);
 			break;
 
 		case 'subject':
