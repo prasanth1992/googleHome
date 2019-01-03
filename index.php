@@ -12,7 +12,12 @@ if($method == 'POST'){
 	switch ($text) {
 		case 'welcome':
 			if($id=$json->result->parameters->id){
-				$speech=$id;
+				
+$ch = curl_init('http://ec2-34-228-218-131.compute-1.amazonaws.com/AlexaIvanti/Api/Incident/GetStatusOfIncident/'.$id);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  
+    $speech=curl_exec($ch);
+				curl_close($ch);
 			}
 			break;
 
