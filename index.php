@@ -7,7 +7,7 @@ if($method == 'POST'){
 	$requestBody = file_get_contents('php://input');
 	$json = json_decode($requestBody);
 
-	$text = $json->queryResult->intent->displayName;
+	$text = $json->result->metadata->intentName;
 
 	switch ($text) {
 		case 'welcome':
