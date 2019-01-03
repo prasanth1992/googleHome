@@ -16,7 +16,7 @@ if($method == 'POST'){
 			break;
 
 		case 'subject':
-			$speech = $testing;
+			$speech = "from subject";
 			break;
 
 		case 'anything':
