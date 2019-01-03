@@ -6,17 +6,17 @@ $method = $_SERVER['REQUEST_METHOD'];
 if($method == 'POST'){
 	$requestBody = file_get_contents('php://input');
 	$json = json_decode($requestBody);
-
+	$inputText="Prasanth";
 	$text = $json->result->metadata->intentName;
 
 	switch ($text) {
 		case 'welcome':
 			$speech = "Hi, Nice to meet you";
-			$testing = "Testting Data from one";
+			$inputText=$inputText.$speech;
 			break;
 
 		case 'subject':
-			$speech = "from subject";
+			$speech = $inputText;
 			break;
 
 		case 'anything':
