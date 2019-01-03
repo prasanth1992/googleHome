@@ -1,7 +1,7 @@
 <?php
 $rawJSON = file_get_contents('php://input');
 $EchoReqObj = json_decode($rawJSON);
-if($EchoReqObj->queryResult->intent->displayName =="welcome"){
+if($EchoReqObj->queryResult->queryText =="test it"){
   $array = array ('payload' =>array ('google' => array ('expectUserResponse' => true,'richResponse' => array ('items' => array (
           array (
             'simpleResponse' => 
