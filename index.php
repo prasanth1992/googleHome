@@ -22,7 +22,11 @@ $ch = curl_init('http://ec2-34-228-218-131.compute-1.amazonaws.com/AlexaIvanti/A
 			break;
 
 		case 'subject':
-			$speech = $inputText;
+			if($json->result->parameters){
+			$subject=$json->result->parameters->subject;
+			$description= $json->result->parameters->description;
+			$speech= $subject.$description;
+			}
 			break;
 
 		case 'anything':
