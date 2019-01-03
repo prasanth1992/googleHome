@@ -12,10 +12,11 @@ if($method == 'POST'){
 	switch ($text) {
 		case 'welcome':
 			$speech = "Hi, Nice to meet you";
+			$testing = "Testting Data from one";
 			break;
 
 		case 'subject':
-			$speech = "Bye, good night";
+			$speech = $testing;
 			break;
 
 		case 'anything':
